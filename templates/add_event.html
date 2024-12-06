@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Создать мероприятие
+{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>Новое мероприятие</h1>
+    <form method="post">
+        <input type="test" name="title" class="form-control" placeholder="Write header of event"><br>
+        <textarea name="intro" id="intro" class="form-control" placeholder="Write category"> </textarea><br>
+        <textarea name="text" id="text" class="form-control" placeholder="Write when event will start"> </textarea><br>
+        <textarea name="text" id="text" class="form-control" placeholder="Write when event will end"> </textarea><br>
+        <input type="submit" class="btn btn-success" value="Submit">
+    </form>
+</div>
+{% endblock %}
