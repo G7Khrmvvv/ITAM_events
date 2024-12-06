@@ -1,8 +1,9 @@
 from flask import Flask, render_template, url_for, request, redirect
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///events.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(os.getcwd(), "instance", "event.db")}'
 db = SQLAlchemy(app)
 
 class Calendar(db.Model):
@@ -54,11 +55,14 @@ def event_creation():
             db.session.add(calendar)
             db.session.commit()
             return redirect("/calendar")
-        except:
-            return "Something goes wrong"
+        except Exception as e:
+            return f"An error occurred: {e}"
 
     else:
         return render_template("add_event.html")
 
-if __name__ == '__main__':
-    app.run()
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
