@@ -3,10 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(os.getcwd(), "instance", "event.db")}'
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{os.path.join(os.getcwd(), "events.db")}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-class Calendar(db.Model):
+
+class Events(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(15), nullable=False) # 15 ставил от балды, фронтдендеру или дизайнеру надо поменять
     #description = db.Column(db.Text, nullable=True)
@@ -22,7 +24,7 @@ class Calendar(db.Model):
     #updated_at = db.Column(db.String(50), nullable=True)
 
     def __repr__(self):
-        return '<Calendar %r>' % self.id
+        return '<Events %r>' % self.id
 
 @app.route('/event')
 def event_page():
@@ -49,7 +51,7 @@ def event_creation():
         start = request.form['start_datetime']
         end = request.form['end_datetime']
 
-        calendar = Calendar(name=name, category=category, status=status, start_datetime=start, end_datetime=end)
+        calendar = Events(name=name, category=category, status=status, start_datetime=start, end_datetime=end)
 
         try:
             db.session.add(calendar)
@@ -63,6 +65,4 @@ def event_creation():
 
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
     app.run(debug=True)
