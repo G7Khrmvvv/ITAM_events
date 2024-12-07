@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class Events(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    event_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(15), nullable=False) # 15 ставил от балды, фронтдендеру или дизайнеру надо поменять
     #description = db.Column(db.Text, nullable=True)
     category = db.Column(db.String(100), nullable=False)
@@ -32,7 +32,8 @@ def event_page():
 
 @app.route('/calendar')
 def calendar_event():
-    return render_template("calendar.html")
+    events = Events.query.all()
+    return render_template("calendar.html", events=events)
 
 
 @app.route('/')
