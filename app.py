@@ -25,9 +25,13 @@ class Events(db.Model):
     def __repr__(self):
         return '<Events %r>' % self.id
 
-@app.route('/event')
-def event_page():
-    return render_template("event.html")
+
+@app.route('/event/<int:event_id>')
+def event_page(event_id):
+    events = Events.query.get(event_id)
+    if not events:
+        return "Event not found", 404
+    return render_template("event.html", events=events)
 
 
 @app.route('/calendar')
