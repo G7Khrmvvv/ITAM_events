@@ -8,7 +8,8 @@ COPY requirements.txt requirements.txt
 RUN apt update
 
 RUN apt install python3-pip -y
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --break-system-packages -r requirements.txt
+
 
 COPY . .
 
