@@ -5,5 +5,10 @@
 {% endblock %}
 
 {% block body %}
-<h1>Тут название мероприятия</h1>
+    <body style="background-color: #1C1C1C;">
+<h1 style="color: #FFFFFF;">{{ events.name }}</h1>
+<p style="color: #FFFFFF;">Категория: {{ events.category }}</p>
+<p style="color: #FFFFFF;">Статус: {{ events.status }}</p>
+<p style="color: #FFFFFF;">Начало: {{ events.start_datetime }}</p>
+<p style="color: #FFFFFF;">Окончание: {{ events.end_datetime }}</p>
 {% endblock %}

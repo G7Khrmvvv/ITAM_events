@@ -1,28 +1,40 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Календарь
+    Мероприятия
 {% endblock %}
 
 {% block body %}
-<h1>Calendar</h1>
-    Я календаль Я календаль Я календаль Я календальЯ календальЯ календаль
-    <a href="/add_event" class="btn btn-primary rounded-circle" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
-        +
+<body style="background-color: #1C1C1C;">
+<div style="display: flex; align-items: center; margin-left: 50px; margin-bottom: 20px;">
+    <h1 style="margin-right: 20px; color: #FFFFFF">Мероприятия</h1>
+    <a href="/add_event" class="btn" style="padding: 10px 20px; background-color: #1F1F1F; color: #FFFFFF; border: 1px solid #FFFFFF; border-radius: 15px; margin-left: 700px;">
+        Новое мероприятие
     </a>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+</div>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
     {% for el in events %}
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text"> {{ el.name }}  в категории {{ el.category }} в статусе {{ el.status }} и закончится {{ el.end_datetime }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+        <div class="col mt-5 mb-5">
+          <div class="card shadow-sm" style="width: 340px; margin: auto; border-radius: 15px; display: flex; flex-direction: column; justify-content: space-between; height: 100%; background-color: #2E2E2E">
+            <img src="https://sun9-66.userapi.com/impg/wd90FzWxd1oSbFm1Rzm0TF4yrG98T1yE6ahKQQ/eUudc9ak-38.jpg?size=1000x1000&quality=95&sign=0b8a9bb1dd07c0a3b6e85e38e8a2f643&type=album"
+                 class="card-img-top"
+                 alt="Event Thumbnail"
+                 style="width: 100%; height: 160px; border-radius: 15px; object-fit: cover;">
+            <div class="card-body" style="flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <p class="card-text" style="color: #FFFFFF; font-weight: bold; font-size: 1.5em;">{{ el.name }}</p>
+              <p class="card-text" style="color: #FFFFFF;">{{ el.category }}</p>
+               <div class="d-flex justify-content-between align-items-center" style="margin-top: auto;">
+                <small style="color: #FFFFFF; font-size: 0.8em;">{{ el.status }}</small>
+                <div style="display: flex; align-items: center;">
+                  <small style="color: #FFFFFF; font-size: 0.8em; margin-right: 5px;">{{ el.start_datetime }}</small>
+                  <i class="fas fa-clock" style="color: #FFFFFF;"></i>
                 </div>
-                <small class="text-body-secondary">{{ el.start_datetime }}</small>
+                <div class="btn-group">
+                  <a href="/event/{{ el.event_id }}" class="btn btn-sm btn-outline-secondary rounded-circle" style="width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; margin-top: -60px;">
+                    <i class="fas fa-arrow-right"></i>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -30,20 +42,3 @@
     {% endfor %}
     </div>
 {% endblock %}
-
-
-<div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-body-secondary">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>

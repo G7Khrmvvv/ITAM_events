@@ -5,14 +5,15 @@
 {% endblock %}
 
 {% block body %}
+    <body style="background-color: #1C1C1C;">
 <div class="container mt-5">
-    <h1>Новое мероприятие</h1>
+    <h1 style="color: #FFFFFF;">Новое мероприятие</h1>
     <form method="post">
         <input type="text" name="name" id="name" class="form-control" placeholder="Write header of event"><br>
-        <textarea name="category" id="category" class="form-control" placeholder="Write category"> </textarea><br>
-        <textarea name="status" id="status" class="form-control" placeholder="Write current status"> </textarea><br>
-        <textarea name="start_datetime" id="start_datetime" class="form-control" placeholder="Write when event will start"> </textarea><br>
-        <textarea name="end_datetime" id="end_datetime" class="form-control" placeholder="Write when event will end"> </textarea><br>
+        <textarea name="category" id="category" class="form-control" placeholder="Write category"></textarea><br>
+        <textarea name="status" id="status" class="form-control" placeholder="Write current status"></textarea><br>
+        <textarea name="start_datetime" id="start_datetime" class="form-control" placeholder="Write when event will start"></textarea><br>
+        <textarea name="end_datetime" id="end_datetime" class="form-control" placeholder="Write when event will end"></textarea><br>
         <input type="submit" class="btn btn-success" value="Submit">
     </form>
 </div>
